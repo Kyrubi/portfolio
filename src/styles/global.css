@@ -1,1 +1,37 @@
 @import "tailwindcss";
+@import "./fonts.css";
+
+/*
+ * Design tokens — see design.md for the full rationale.
+ * Color roles map as: void/surface = backgrounds, violet/cyan/pink/amber = aura accents,
+ * chrome = specular highlights, ink/ink-muted = text.
+ */
+@theme {
+	--color-void: #050507;
+	--color-surface: #0d0d12;
+	--color-violet: #66156c;
+	--color-cyan: #00e5ff;
+	--color-pink: #ff2a85;
+	--color-amber: #ff9e00;
+	--color-chrome: #f0f4f8;
+	--color-ink: #ededef;
+	--color-ink-muted: #7e7e8f;
+
+	--font-display: "Geist Variable", "Inter", system-ui, sans-serif;
+	--font-accent: "Fraunces Variable", Georgia, serif;
+	--font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+	--tracking-tightest: -0.04em;
+	--leading-tightest: 0.95;
+}
+
+@layer base {
+	body {
+		@apply bg-void font-display text-ink;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--color-cyan);
+		outline-offset: 2px;
+	}
+}
