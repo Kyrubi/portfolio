@@ -1,0 +1,71 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getLangFromUrl, useTranslations, getLocaleTogglePath } from '../i18n/utils';
+import { languages } from '../i18n/ui';
+
+const { pathname } = Astro.url;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const otherLang = lang === 'es' ? 'en' : 'es';
+const togglePath = getLocaleTogglePath(pathname, lang);
+
+const links = [
+	{ href: getRelativeLocaleUrl(lang, '/'), label: t('nav.home') },
+	{ href: getRelativeLocaleUrl(lang, '/proyectos'), label: t('nav.projects') },
+	{ href: getRelativeLocaleUrl(lang, '/about'), label: t('nav.about') },
+	{ href: getRelativeLocaleUrl(lang, '/contacto'), label: t('nav.contact') }
+];
+
+function linkClass(href: string) {
+	return [
+		'font-mono text-xs uppercase tracking-widest transition-colors',
+		pathname === href ? 'text-ink' : 'text-ink-muted hover:text-ink'
+	];
+}
+---
+
+<header class="fixed inset-x-0 top-0 z-40 px-6 py-6 md:px-10">
+	<div class="flex items-center justify-between">
+		<a href={getRelativeLocaleUrl(lang, '/')} class="font-mono text-xs uppercase tracking-widest text-ink">
+			Paul Sulca
+		</a>
+		<nav class="hidden items-center gap-6 md:flex">
+			{links.map((link) => <a href={link.href} class:list={linkClass(link.href)}>{link.label}</a>)}
+			<a href={togglePath} class="font-mono text-xs uppercase tracking-widest text-ink-muted hover:text-ink">
+				{languages[otherLang]}
+			</a>
+		</nav>
+		<button
+			id="nav-toggle"
+			type="button"
+			aria-expanded="false"
+			aria-controls="mobile-nav"
+			class="font-mono text-xs uppercase tracking-widest text-ink md:hidden"
+			data-label-open={t('nav.menu')}
+			data-label-close={t('nav.close')}
+		>
+			{t('nav.menu')}
+		</button>
+	</div>
+	<nav id="mobile-nav" class="mt-4 hidden flex-col gap-4 md:hidden" aria-label={t('nav.home')}>
+		{links.map((link) => <a href={link.href} class:list={linkClass(link.href)}>{link.label}</a>)}
+		<a href={togglePath} class="font-mono text-xs uppercase tracking-widest text-ink-muted hover:text-ink">
+			{languages[otherLang]}
+		</a>
+	</nav>
+</header>
+
+<script>
+	const toggle = document.getElementById('nav-toggle');
+	const mobileNav = document.getElementById('mobile-nav');
+
+	toggle?.addEventListener('click', () => {
+		const expanded = toggle.getAttribute('aria-expanded') === 'true';
+		toggle.setAttribute('aria-expanded', String(!expanded));
+		toggle.textContent = expanded
+			? (toggle.dataset.labelOpen ?? 'Menú')
+			: (toggle.dataset.labelClose ?? 'Cerrar');
+		mobileNav?.classList.toggle('hidden');
+		mobileNav?.classList.toggle('flex');
+	});
+</script>
