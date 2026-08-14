@@ -1,0 +1,14 @@
+---
+import AuraGlow from './AuraGlow.astro';
+
+interface Props {
+	class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class:list={['pointer-events-none absolute inset-0 overflow-hidden', className]} aria-hidden="true">
+	<AuraGlow class="-left-40 -top-40 h-[600px] w-[600px]" />
+	<AuraGlow class="-bottom-56 -right-24 h-[500px] w-[500px]" />
+</div>
