@@ -1,13 +1,43 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import Layout from '../layouts/Layout.astro';
 import ChromeCanvas from '../components/ChromeCanvas.astro';
+import AuraBackground from '../components/effects/AuraBackground.astro';
+import Badge from '../components/ui/Badge.astro';
+import Button from '../components/ui/Button.astro';
+import { Icon } from 'astro-icon/components';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<Layout title="Portfolio">
-	<main class="relative h-dvh w-full overflow-hidden bg-neutral-950 text-neutral-50">
+<Layout title="Paul Sulca Gonzales — Full-Stack Junior">
+	<div id="hero" class="relative h-dvh w-full overflow-hidden bg-void text-ink">
+		<AuraBackground />
 		<div class="absolute inset-0">
 			<ChromeCanvas />
 		</div>
-		<h1 class="relative z-10 p-8 text-4xl font-medium tracking-tight">Portfolio</h1>
-	</main>
+		<div class="relative z-10 flex h-full flex-col justify-end p-8 pb-20 md:p-10 md:pb-24">
+			<div data-reveal class="mb-4 w-fit">
+				<Badge>{t('hero.badge')}</Badge>
+			</div>
+			<h1 data-reveal class="text-4xl font-extrabold leading-tightest tracking-tightest sm:text-5xl md:text-6xl">
+				{t('hero.name')} <span class="font-accent italic font-normal">{t('hero.accent')}</span>
+			</h1>
+			<div data-reveal class="mt-6 w-fit">
+				<Button href={getRelativeLocaleUrl(lang, '/proyectos')}>
+					{t('hero.cta')}
+					<Icon name="lucide:arrow-up-right" class="size-4" aria-hidden="true" />
+				</Button>
+			</div>
+		</div>
+	</div>
 </Layout>
+
+<script>
+	import { heroIntro } from '../lib/animations';
+
+	const hero = document.getElementById('hero');
+	if (hero) heroIntro(hero);
+</script>
