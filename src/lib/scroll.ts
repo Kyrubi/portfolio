@@ -5,6 +5,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 export function initSmoothScroll() {
+	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if (prefersReducedMotion) return null;
+
 	const lenis = new Lenis();
 
 	lenis.on('scroll', ScrollTrigger.update);
