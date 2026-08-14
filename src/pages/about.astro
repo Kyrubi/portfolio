@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/ui/Section.astro';
+import Badge from '../components/ui/Badge.astro';
+import Card from '../components/ui/Card.astro';
+import AuraBackground from '../components/effects/AuraBackground.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const skills = [
+	'Java',
+	'Spring Boot',
+	'.NET',
+	'NestJS',
+	'Domain-Driven Design',
+	'REST APIs',
+	'PostgreSQL',
+	'MongoDB',
+	'Angular',
+	'Vue',
+	'TypeScript',
+	'JavaScript',
+	'Android',
+	'Flutter',
+	'Docker',
+	'Git'
+];
+---
+
+<Layout title="About — Paul Sulca Gonzales">
+	<div class="relative">
+		<AuraBackground class="opacity-60" />
+		<Section class="relative">
+			<p class="font-mono text-xs uppercase tracking-widest text-ink-muted">{t('about.eyebrow')}</p>
+			<h1
+				data-scroll-reveal
+				class="mt-2 max-w-3xl text-4xl font-extrabold leading-tightest tracking-tightest sm:text-5xl"
+			>
+				{t('about.headline')}<span class="font-accent italic font-normal">{t('about.headlineAccent')}</span>{t('about.headlineEnd')}
+			</h1>
+
+			<div data-scroll-reveal class="mt-6 w-fit">
+				<Badge>{t('about.juniorNote')}</Badge>
+			</div>
+
+			<p data-scroll-reveal class="mt-8 max-w-2xl text-lg text-ink-muted">
+				{t('about.bio')}
+			</p>
+
+			<div data-scroll-reveal class="mt-6 flex flex-wrap gap-2">
+				<Badge>{t('about.achievementLabel')}</Badge>
+				<Badge>{t('about.courseLabel')}</Badge>
+			</div>
+
+			<div class="mt-20 grid gap-6 md:grid-cols-2">
+				<div data-scroll-reveal>
+					<p class="font-mono text-xs uppercase tracking-widest text-ink-muted">{t('about.experienceTitle')}</p>
+					<Card class="mt-4">
+						<div class="flex items-baseline justify-between gap-4">
+							<h3 class="text-xl font-semibold tracking-tight">{t('about.experienceRole')}</h3>
+							<span class="font-mono text-xs text-ink-muted">{t('about.experiencePeriod')}</span>
+						</div>
+						<p class="mt-1 font-accent italic text-ink-muted">{t('about.experienceCompany')}</p>
+						<p class="mt-4 text-sm text-ink-muted">{t('about.experienceDesc')}</p>
+					</Card>
+				</div>
+
+				<div data-scroll-reveal>
+					<p class="font-mono text-xs uppercase tracking-widest text-ink-muted">{t('about.educationTitle')}</p>
+					<Card class="mt-4">
+						<div class="flex items-baseline justify-between gap-4">
+							<h3 class="text-xl font-semibold tracking-tight">{t('about.educationSchool')}</h3>
+						</div>
+						<p class="mt-1 font-mono text-xs text-ink-muted">{t('about.educationPeriod')}</p>
+					</Card>
+				</div>
+			</div>
+
+			<div data-scroll-reveal class="mt-20">
+				<p class="font-mono text-xs uppercase tracking-widest text-ink-muted">{t('about.skillsTitle')}</p>
+				<div class="mt-4 flex flex-wrap gap-2">
+					{skills.map((skill) => <Badge>{skill}</Badge>)}
+				</div>
+			</div>
+		</Section>
+	</div>
+</Layout>
+
+<script>
+	import { scrollReveal } from '../lib/animations';
+	scrollReveal();
+</script>

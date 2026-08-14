@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/ui/Section.astro';
+import Button from '../components/ui/Button.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Contacto — Paul Sulca Gonzales">
+	<Section>
+		<p class="font-mono text-xs uppercase tracking-widest text-ink-muted">{t('contact.eyebrow')}</p>
+		<h1 data-scroll-reveal class="mt-2 max-w-2xl text-4xl font-extrabold tracking-tightest sm:text-5xl">
+			{t('contact.title')}
+		</h1>
+
+		<form id="contact-form" data-scroll-reveal class="mt-12 max-w-xl space-y-6">
+			<div>
+				<label for="name" class="font-mono text-xs uppercase tracking-widest text-ink-muted">
+					{t('contact.formName')}
+				</label>
+				<input
+					id="name"
+					name="name"
+					type="text"
+					required
+					class="mt-2 w-full border-b border-ink-muted/30 bg-transparent py-2 text-ink outline-none focus:border-ink"
+				/>
+			</div>
+			<div>
+				<label for="email" class="font-mono text-xs uppercase tracking-widest text-ink-muted">
+					{t('contact.formEmail')}
+				</label>
+				<input
+					id="email"
+					name="email"
+					type="email"
+					required
+					class="mt-2 w-full border-b border-ink-muted/30 bg-transparent py-2 text-ink outline-none focus:border-ink"
+				/>
+			</div>
+			<div>
+				<label for="message" class="font-mono text-xs uppercase tracking-widest text-ink-muted">
+					{t('contact.formMessage')}
+				</label>
+				<textarea
+					id="message"
+					name="message"
+					rows="4"
+					required
+					class="mt-2 w-full border-b border-ink-muted/30 bg-transparent py-2 text-ink outline-none focus:border-ink"
+				></textarea>
+			</div>
+			<Button>{t('contact.formSubmit')}</Button>
+		</form>
+
+		<div data-scroll-reveal class="mt-16 max-w-xl border-t border-ink-muted/10 pt-8">
+			<p class="font-mono text-xs uppercase tracking-widest text-ink-muted">{t('contact.directTitle')}</p>
+			<div class="mt-4 flex flex-wrap gap-6">
+				<a
+					href="mailto:paulfernando_03@outlook.es"
+					class="font-mono text-xs uppercase tracking-widest text-ink hover:text-cyan"
+				>
+					paulfernando_03@outlook.es
+				</a>
+				<a
+					href="https://linkedin.com/in/paul-sg"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="font-mono text-xs uppercase tracking-widest text-ink hover:text-cyan"
+				>
+					LinkedIn
+				</a>
+				<a
+					href="https://github.com/Kyrubi"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="font-mono text-xs uppercase tracking-widest text-ink hover:text-cyan"
+				>
+					GitHub
+				</a>
+			</div>
+		</div>
+	</Section>
+</Layout>
+
+<script>
+	import { scrollReveal } from '../lib/animations';
+	scrollReveal();
+
+	const CONTACT_EMAIL = 'paulfernando_03@outlook.es';
+
+	const form = document.getElementById('contact-form') as HTMLFormElement | null;
+
+	form?.addEventListener('submit', (event) => {
+		event.preventDefault();
+		const data = new FormData(form);
+		const name = data.get('name');
+		const email = data.get('email');
+		const message = data.get('message');
+
+		const subject = encodeURIComponent(`Nuevo mensaje de ${name}`);
+		const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+
+		window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+	});
+</script>
