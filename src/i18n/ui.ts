@@ -15,8 +15,8 @@ export const ui = {
 		'nav.skip': 'Saltar al contenido',
 
 		'hero.badge': 'Full-Stack Junior — 2026',
-		'hero.name': 'Paul Sulca',
-		'hero.accent': 'Gonzales',
+		'hero.name': 'Paul',
+		'hero.accent': 'Sulca',
 		'hero.cta': 'Ver proyectos',
 		'hero.chip1': 'UPC · Ing. Software',
 		'hero.chip2': 'Tamci · Junior Dev',
@@ -66,8 +66,8 @@ export const ui = {
 		'nav.skip': 'Skip to content',
 
 		'hero.badge': 'Junior Full-Stack — 2026',
-		'hero.name': 'Paul Sulca',
-		'hero.accent': 'Gonzales',
+		'hero.name': 'Paul',
+		'hero.accent': 'Sulca',
 		'hero.cta': 'View projects',
 		'hero.chip1': 'UPC · Software Eng.',
 		'hero.chip2': 'Tamci · Junior Dev',
