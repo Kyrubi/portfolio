@@ -18,6 +18,28 @@ const t = useTranslations(lang);
 		<div class="absolute inset-0">
 			<ChromeCanvas />
 		</div>
+
+		<div class="pointer-events-none absolute inset-0 z-10 hidden sm:block">
+			<span
+				data-reveal
+				class="absolute left-8 top-28 rounded-full border border-ink-muted/25 bg-void/40 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-ink-muted backdrop-blur-sm md:left-10"
+			>
+				{t('hero.chip1')}
+			</span>
+			<span
+				data-reveal
+				class="absolute right-8 top-28 rounded-full border border-ink-muted/25 bg-void/40 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-ink-muted backdrop-blur-sm md:right-10"
+			>
+				{t('hero.chip2')}
+			</span>
+			<span
+				data-reveal
+				class="absolute right-8 top-1/2 -translate-y-1/2 rounded-full border border-ink-muted/25 bg-void/40 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-ink-muted backdrop-blur-sm md:right-10"
+			>
+				{t('hero.chip3')}
+			</span>
+		</div>
+
 		<div class="relative z-10 flex h-full flex-col justify-end p-8 pb-20 md:p-10 md:pb-24">
 			<div data-reveal class="mb-4 w-fit">
 				<Badge>{t('hero.badge')}</Badge>
