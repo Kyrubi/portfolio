@@ -2,7 +2,7 @@
 @import "./fonts.css";
 
 /*
- * Design tokens — see design.md for the full rationale.
+ * Design tokens — see DESIGN.md for the full rationale.
  * Color roles map as: void/surface = backgrounds, violet/cyan/pink/amber = aura accents,
  * chrome = specular highlights, ink/ink-muted = text.
  */

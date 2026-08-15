@@ -1,0 +1,24 @@
+<canvas id="chrome-canvas-pbr" class="h-full w-full" aria-hidden="true"></canvas>
+
+<script>
+	const canvas = document.getElementById('chrome-canvas-pbr') as HTMLCanvasElement | null;
+	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	if (canvas && !prefersReducedMotion) {
+		let loaded = false;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (entries[0].isIntersecting && !loaded) {
+					loaded = true;
+					import('../lib/three/scene-pbr').then(({ initChromeScenePBR }) => {
+						initChromeScenePBR(canvas);
+					});
+					observer.disconnect();
+				}
+			},
+			{ threshold: 0.1 }
+		);
+		observer.observe(canvas);
+	}
+</script>
