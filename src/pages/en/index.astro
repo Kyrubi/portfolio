@@ -1,18 +1,18 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import Layout from '../layouts/Layout.astro';
-import ChromeCanvas from '../components/ChromeCanvas.astro';
-import AuraBackground from '../components/effects/AuraBackground.astro';
-import Badge from '../components/ui/Badge.astro';
-import Button from '../components/ui/Button.astro';
+import Layout from '../../layouts/Layout.astro';
+import ChromeCanvas from '../../components/ChromeCanvas.astro';
+import AuraBackground from '../../components/effects/AuraBackground.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Button from '../../components/ui/Button.astro';
 import { Icon } from 'astro-icon/components';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title="Paul Sulca Gonzales — Full-Stack Junior">
+<Layout title="Paul Sulca Gonzales — Junior Full-Stack Developer">
 	<div id="hero" class="relative h-dvh w-full overflow-hidden bg-void text-ink">
 		<AuraBackground />
 		<div class="absolute inset-0">

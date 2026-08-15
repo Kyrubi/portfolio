@@ -1,0 +1,65 @@
+---
+import { getCollection, render } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import Layout from '../../../layouts/Layout.astro';
+import Section from '../../../components/ui/Section.astro';
+import Badge from '../../../components/ui/Badge.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+import { getProjectGradient } from '../../../lib/projectAccent';
+
+export async function getStaticPaths() {
+	const projects = await getCollection('projects');
+	return projects.map((project) => ({
+		params: { slug: project.id },
+		props: { project }
+	}));
+}
+
+const { project } = Astro.props;
+const { title, year, tags, summary, externalLink } = project.data;
+const { Content } = await render(project);
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={`${title} — Paul Sulca Gonzales`}>
+	<Section>
+		<a
+			href={getRelativeLocaleUrl(lang, '/proyectos')}
+			class="font-mono text-xs uppercase tracking-widest text-ink-muted hover:text-ink"
+		>
+			{t('projectDetail.back')}
+		</a>
+		<div class="mt-6 flex flex-wrap items-center gap-2">
+			{tags.map((tag) => <Badge>{tag}</Badge>)}
+			<span class="font-mono text-xs text-ink-muted">{year}</span>
+		</div>
+		<h1 data-scroll-reveal class="mt-4 text-4xl font-extrabold tracking-tightest sm:text-5xl">{title}</h1>
+		<p data-scroll-reveal class="mt-4 max-w-2xl text-lg text-ink-muted">{summary}</p>
+		<div
+			data-scroll-reveal
+			class:list={['mt-10 mb-10 aspect-video w-full rounded-2xl', getProjectGradient(project.id)]}
+		>
+		</div>
+		<article data-scroll-reveal class="max-w-2xl text-ink-muted [&>p]:mt-4 [&>p]:leading-relaxed">
+			<Content />
+		</article>
+		{
+			externalLink && (
+				<a
+					href={externalLink}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="mt-10 inline-block font-mono text-xs uppercase tracking-widest text-ink hover:text-cyan"
+				>
+					{t('projectDetail.visit')}
+				</a>
+			)
+		}
+	</Section>
+</Layout>
+
+<script>
+	import { scrollReveal } from '../../../lib/animations';
+	scrollReveal();
+</script>
