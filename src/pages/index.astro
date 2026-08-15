@@ -19,35 +19,14 @@ const t = useTranslations(lang);
 			<ChromeCanvas />
 		</div>
 
-		<div class="pointer-events-none absolute inset-0 z-10 hidden sm:block">
-			<span
-				data-reveal
-				class="absolute left-8 top-28 rounded-full border border-ink-muted/25 bg-void/40 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-ink-muted backdrop-blur-sm md:left-10"
-			>
-				{t('hero.chip1')}
-			</span>
-			<span
-				data-reveal
-				class="absolute right-8 top-28 rounded-full border border-ink-muted/25 bg-void/40 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-ink-muted backdrop-blur-sm md:right-10"
-			>
-				{t('hero.chip2')}
-			</span>
-			<span
-				data-reveal
-				class="absolute right-8 top-1/2 -translate-y-1/2 rounded-full border border-ink-muted/25 bg-void/40 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-ink-muted backdrop-blur-sm md:right-10"
-			>
-				{t('hero.chip3')}
-			</span>
-		</div>
-
 		<div class="relative z-10 flex h-full flex-col justify-end p-8 pb-20 md:p-10 md:pb-24">
-			<div data-reveal class="mb-4 w-fit">
+			<div class="mb-4 w-fit">
 				<Badge>{t('hero.badge')}</Badge>
 			</div>
-			<h1 data-reveal class="text-4xl font-extrabold leading-tightest tracking-tightest sm:text-5xl md:text-6xl">
+			<h1 class="text-4xl font-extrabold leading-tightest tracking-tightest sm:text-5xl md:text-6xl">
 				{t('hero.name')} <span class="font-accent italic font-normal">{t('hero.accent')}</span>
 			</h1>
-			<div data-reveal class="mt-6 w-fit">
+			<div class="mt-6 w-fit">
 				<Button href={getRelativeLocaleUrl(lang, '/proyectos')}>
 					{t('hero.cta')}
 					<Icon name="lucide:arrow-up-right" class="size-4" aria-hidden="true" />
@@ -56,10 +35,3 @@ const t = useTranslations(lang);
 		</div>
 	</div>
 </Layout>
-
-<script>
-	import { heroIntro } from '../lib/animations';
-
-	const hero = document.getElementById('hero');
-	if (hero) heroIntro(hero);
-</script>

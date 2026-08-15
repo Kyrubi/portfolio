@@ -18,9 +18,6 @@ export const ui = {
 		'hero.name': 'Paul',
 		'hero.accent': 'Sulca',
 		'hero.cta': 'Ver proyectos',
-		'hero.chip1': 'UPC · Ing. Software',
-		'hero.chip2': 'Tamci · Junior Dev',
-		'hero.chip3': 'Spring Boot + Angular',
 
 		'footer.rights': 'Todos los derechos reservados',
 
@@ -69,9 +66,6 @@ export const ui = {
 		'hero.name': 'Paul',
 		'hero.accent': 'Sulca',
 		'hero.cta': 'View projects',
-		'hero.chip1': 'UPC · Software Eng.',
-		'hero.chip2': 'Tamci · Junior Dev',
-		'hero.chip3': 'Spring Boot + Angular',
 
 		'footer.rights': 'All rights reserved',
 
