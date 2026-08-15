@@ -37,7 +37,7 @@ export const ui = {
 		'about.headlineAccent': 'precisión',
 		'about.headlineEnd': ' y trabajo en equipo.',
 		'about.bio':
-			'Estudiante de Ingeniería de Software en la UPC (8vo ciclo) y desarrollador junior full-stack. Actualmente en Tamci, mi primera empresa, donde trabajo en backend con Spring Boot y frontend con Angular — desde la captura de requisitos con clientes hasta la lógica de negocio. Español nativo, inglés intermedio-alto.',
+			'Estudiante de Ingeniería de Software en la UPC (8vo ciclo) y desarrollador junior full-stack en Tamci. Español nativo, inglés intermedio-alto.',
 		'about.juniorNote': 'Aún estoy construyendo mi trayectoria como desarrollador — me presento explícitamente como junior.',
 		'about.experienceTitle': 'Experiencia',
 		'about.experienceRole': 'Programador Junior',
@@ -50,7 +50,12 @@ export const ui = {
 		'about.educationPeriod': '8vo ciclo, desde marzo 2022',
 		'about.achievementLabel': 'Grupo de Excelencia Académica — Décimo Superior',
 		'about.courseLabel': 'Learn SQL Basics for Data Science — UC Davis (ago–dic 2024)',
-		'about.skillsTitle': 'Stack y habilidades'
+		'about.skillsTitle': 'Stack y habilidades',
+		'about.skillsBackend': 'Backend',
+		'about.skillsFrontend': 'Frontend',
+		'about.skillsDatabases': 'Bases de datos',
+		'about.skillsMobile': 'Mobile',
+		'about.skillsTools': 'Herramientas'
 	},
 	en: {
 		'nav.home': 'Home',
@@ -83,7 +88,7 @@ export const ui = {
 		'about.headlineAccent': 'precision',
 		'about.headlineEnd': ' and teamwork.',
 		'about.bio':
-			'Software Engineering student at UPC (8th term) and junior full-stack developer. Currently at Tamci, my first company, working on backend with Spring Boot and frontend with Angular — from gathering requirements with clients to business logic. Native Spanish speaker, upper-intermediate English.',
+			'Software Engineering student at UPC (8th term) and junior full-stack developer at Tamci. Native Spanish speaker, upper-intermediate English.',
 		'about.juniorNote': "I'm still building my track record as a developer — I explicitly present myself as junior.",
 		'about.experienceTitle': 'Experience',
 		'about.experienceRole': 'Junior Developer',
@@ -96,6 +101,11 @@ export const ui = {
 		'about.educationPeriod': '8th term, since March 2022',
 		'about.achievementLabel': 'Academic Excellence Group — Top 10 of class',
 		'about.courseLabel': 'Learn SQL Basics for Data Science — UC Davis (Aug–Dec 2024)',
-		'about.skillsTitle': 'Stack & skills'
+		'about.skillsTitle': 'Stack & skills',
+		'about.skillsBackend': 'Backend',
+		'about.skillsFrontend': 'Frontend',
+		'about.skillsDatabases': 'Databases',
+		'about.skillsMobile': 'Mobile',
+		'about.skillsTools': 'Tools'
 	}
 } as const;

@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@iconify-json/simple-icons": "^1.2.93",
     "@types/three": "^0.185.4",
     "typescript": "^5.9.3",
     "vite-plugin-glsl": "^1.6.1"
