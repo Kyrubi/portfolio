@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import Section from '../../../components/ui/Section.astro';
-import ProjectCard from '../../../components/ProjectCard.astro';
+import ProjectCarousel from '../../../components/ProjectCarousel.astro';
 import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -13,10 +13,14 @@ const projects = (await getCollection('projects')).sort((a, b) => b.data.year - 
 
 <Layout title="Projects — Paul Sulca Gonzales">
 	<Section>
-		<p class="font-mono text-xs uppercase tracking-widest text-ink-muted">{t('projects.eyebrow')}</p>
-		<h1 class="mt-2 text-4xl font-extrabold tracking-tightest sm:text-5xl">{t('projects.title')}</h1>
-		<div class="mt-16 grid gap-6 md:grid-cols-2">
-			{projects.map((project) => <ProjectCard project={project} />)}
+		<p data-scroll-reveal class="font-mono text-xs uppercase tracking-widest text-ink-muted">
+			{t('projects.eyebrow')}
+		</p>
+		<h1 data-scroll-reveal class="mt-2 text-4xl font-extrabold tracking-tightest sm:text-5xl">
+			{t('projects.title')}
+		</h1>
+		<div class="mt-16">
+			<ProjectCarousel projects={projects} />
 		</div>
 	</Section>
 </Layout>

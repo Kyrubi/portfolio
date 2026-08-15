@@ -5,6 +5,7 @@ import Layout from '../../layouts/Layout.astro';
 import Section from '../../components/ui/Section.astro';
 import Badge from '../../components/ui/Badge.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { getProjectGradient } from '../../lib/projectAccent';
 
 export async function getStaticPaths() {
 	const projects = await getCollection('projects');
@@ -37,7 +38,7 @@ const t = useTranslations(lang);
 		<p data-scroll-reveal class="mt-4 max-w-2xl text-lg text-ink-muted">{summary}</p>
 		<div
 			data-scroll-reveal
-			class="mt-10 mb-10 aspect-video w-full rounded-2xl bg-gradient-to-br from-violet/40 via-pink/20 to-cyan/10"
+			class:list={['mt-10 mb-10 aspect-video w-full rounded-2xl', getProjectGradient(project.id)]}
 		>
 		</div>
 		<article data-scroll-reveal class="max-w-2xl text-ink-muted [&>p]:mt-4 [&>p]:leading-relaxed">

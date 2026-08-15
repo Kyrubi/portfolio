@@ -1,0 +1,59 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import type { HTMLAttributes } from 'astro/types';
+import { Icon } from 'astro-icon/components';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+interface Props extends HTMLAttributes<'a'> {
+	project: CollectionEntry<'projects'>;
+}
+
+const { project, class: className = '', ...rest } = Astro.props;
+const { title, year } = project.data;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const href = getRelativeLocaleUrl(lang, `/proyectos/${project.id}`);
+---
+
+<a
+	href={href}
+	class:list={[
+		'group relative flex h-[420px] w-[280px] shrink-0 flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-surface p-6 transition-colors duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:border-white/20',
+		className
+	]}
+	{...rest}
+>
+	<div
+		class="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100"
+		style="background: radial-gradient(circle at 50% 30%, rgba(102,21,108,0.9) 0%, rgba(255,42,133,0.35) 45%, rgba(0,229,255,0.15) 75%, transparent 100%);"
+	>
+	</div>
+	<div
+		class="pointer-events-none absolute inset-0 rounded-3xl bg-void/30 opacity-0 transition-opacity duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100"
+	>
+	</div>
+
+	<span
+		class="relative z-10 font-mono text-xs uppercase tracking-widest text-ink-muted transition-colors duration-300 group-hover:text-ink"
+	>
+		{year}
+	</span>
+
+	<div class="relative z-10 flex flex-1 items-center justify-center text-center">
+		<span
+			class="font-accent text-3xl italic text-ink transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+		>
+			{title}
+		</span>
+	</div>
+
+	<span class="relative z-10 flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-ink">
+		{t('featured.readStory')}
+		<Icon
+			name="lucide:arrow-up-right"
+			class="size-3.5 transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5"
+			aria-hidden="true"
+		/>
+	</span>
+</a>

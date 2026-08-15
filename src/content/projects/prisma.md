@@ -3,7 +3,6 @@ title: "Prisma"
 year: 2025
 tags: ["3D", "Producto"]
 summary: "Configurador 3D en tiempo real para una línea de objetos cromados."
-featured: true
 externalLink: "https://example.com/prisma"
 ---
 
