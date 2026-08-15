@@ -10,7 +10,6 @@ export const ui = {
 		'nav.home': 'Home',
 		'nav.projects': 'Proyectos',
 		'nav.about': 'About',
-		'nav.contact': 'Contacto',
 		'nav.menu': 'Menú',
 		'nav.close': 'Cerrar',
 		'nav.skip': 'Saltar al contenido',
@@ -19,11 +18,16 @@ export const ui = {
 		'hero.name': 'Paul Sulca',
 		'hero.accent': 'Gonzales',
 		'hero.cta': 'Ver proyectos',
+		'hero.chip1': 'UPC · Ing. Software',
+		'hero.chip2': 'Tamci · Junior Dev',
+		'hero.chip3': 'Spring Boot + Angular',
 
 		'footer.rights': 'Todos los derechos reservados',
 
 		'projects.eyebrow': 'Proyectos',
 		'projects.title': 'Trabajo seleccionado',
+
+		'featured.readStory': 'Leer historia',
 
 		'projectDetail.back': '← Proyectos',
 		'projectDetail.visit': 'Visitar proyecto →',
@@ -46,21 +50,12 @@ export const ui = {
 		'about.educationPeriod': '8vo ciclo, desde marzo 2022',
 		'about.achievementLabel': 'Grupo de Excelencia Académica — Décimo Superior',
 		'about.courseLabel': 'Learn SQL Basics for Data Science — UC Davis (ago–dic 2024)',
-		'about.skillsTitle': 'Stack y habilidades',
-
-		'contact.eyebrow': 'Contacto',
-		'contact.title': 'Hablemos de tu próximo proyecto.',
-		'contact.formName': 'Nombre',
-		'contact.formEmail': 'Email',
-		'contact.formMessage': 'Mensaje',
-		'contact.formSubmit': 'Enviar',
-		'contact.directTitle': 'O escríbeme directamente'
+		'about.skillsTitle': 'Stack y habilidades'
 	},
 	en: {
 		'nav.home': 'Home',
 		'nav.projects': 'Projects',
 		'nav.about': 'About',
-		'nav.contact': 'Contact',
 		'nav.menu': 'Menu',
 		'nav.close': 'Close',
 		'nav.skip': 'Skip to content',
@@ -69,11 +64,16 @@ export const ui = {
 		'hero.name': 'Paul Sulca',
 		'hero.accent': 'Gonzales',
 		'hero.cta': 'View projects',
+		'hero.chip1': 'UPC · Software Eng.',
+		'hero.chip2': 'Tamci · Junior Dev',
+		'hero.chip3': 'Spring Boot + Angular',
 
 		'footer.rights': 'All rights reserved',
 
 		'projects.eyebrow': 'Projects',
 		'projects.title': 'Selected work',
+
+		'featured.readStory': 'Read story',
 
 		'projectDetail.back': '← Projects',
 		'projectDetail.visit': 'Visit project →',
@@ -96,14 +96,6 @@ export const ui = {
 		'about.educationPeriod': '8th term, since March 2022',
 		'about.achievementLabel': 'Academic Excellence Group — Top 10 of class',
 		'about.courseLabel': 'Learn SQL Basics for Data Science — UC Davis (Aug–Dec 2024)',
-		'about.skillsTitle': 'Stack & skills',
-
-		'contact.eyebrow': 'Contact',
-		'contact.title': "Let's talk about your next project.",
-		'contact.formName': 'Name',
-		'contact.formEmail': 'Email',
-		'contact.formMessage': 'Message',
-		'contact.formSubmit': 'Send',
-		'contact.directTitle': 'Or reach out directly'
+		'about.skillsTitle': 'Stack & skills'
 	}
 } as const;

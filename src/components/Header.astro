@@ -12,8 +12,7 @@ const togglePath = getLocaleTogglePath(pathname, lang);
 const links = [
 	{ href: getRelativeLocaleUrl(lang, '/'), label: t('nav.home') },
 	{ href: getRelativeLocaleUrl(lang, '/proyectos'), label: t('nav.projects') },
-	{ href: getRelativeLocaleUrl(lang, '/about'), label: t('nav.about') },
-	{ href: getRelativeLocaleUrl(lang, '/contacto'), label: t('nav.contact') }
+	{ href: getRelativeLocaleUrl(lang, '/about'), label: t('nav.about') }
 ];
 
 function linkClass(href: string) {
