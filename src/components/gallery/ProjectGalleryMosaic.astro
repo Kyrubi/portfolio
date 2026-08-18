@@ -1,0 +1,98 @@
+---
+import ProjectGalleryCard from './ProjectGalleryCard.astro';
+import type { GalleryMediaItem } from './types';
+
+interface Props {
+	items: GalleryMediaItem[];
+	class?: string;
+}
+
+const { items, class: className = '' } = Astro.props;
+
+interface Cell {
+	colSpan: number;
+	rowSpan: number;
+}
+
+// Each template's cells sum to exactly `cols * rows`, so the grid is fully
+// tiled and never leaves an empty gap. The first item always gets the
+// biggest slot (treat the gallery array as ordered by visual priority).
+const bentoTemplates: Record<number, { cols: number; cells: Cell[] }> = {
+	1: { cols: 1, cells: [{ colSpan: 1, rowSpan: 1 }] },
+	2: {
+		cols: 2,
+		cells: [
+			{ colSpan: 1, rowSpan: 1 },
+			{ colSpan: 1, rowSpan: 1 }
+		]
+	},
+	3: {
+		cols: 4,
+		cells: [
+			{ colSpan: 2, rowSpan: 2 },
+			{ colSpan: 2, rowSpan: 1 },
+			{ colSpan: 2, rowSpan: 1 }
+		]
+	},
+	4: {
+		cols: 4,
+		cells: [
+			{ colSpan: 2, rowSpan: 2 },
+			{ colSpan: 1, rowSpan: 1 },
+			{ colSpan: 1, rowSpan: 1 },
+			{ colSpan: 2, rowSpan: 1 }
+		]
+	},
+	5: {
+		cols: 4,
+		cells: [
+			{ colSpan: 2, rowSpan: 2 },
+			{ colSpan: 2, rowSpan: 2 },
+			{ colSpan: 2, rowSpan: 1 },
+			{ colSpan: 1, rowSpan: 1 },
+			{ colSpan: 1, rowSpan: 1 }
+		]
+	},
+	6: {
+		cols: 4,
+		cells: [
+			{ colSpan: 2, rowSpan: 2 },
+			{ colSpan: 1, rowSpan: 1 },
+			{ colSpan: 1, rowSpan: 1 },
+			{ colSpan: 1, rowSpan: 1 },
+			{ colSpan: 1, rowSpan: 1 },
+			{ colSpan: 4, rowSpan: 1 }
+		]
+	}
+};
+
+const template = bentoTemplates[items.length];
+// No template for this count (0 or 7+): plain equal-square grid — every cell
+// is 1x1 so the grid auto-fills without gaps (a partial last row is normal).
+const cols = template?.cols ?? 3;
+---
+
+<div
+	class:list={['grid gap-3 [grid-auto-rows:130px] sm:[grid-auto-rows:170px]', className]}
+	style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
+>
+	{
+		items.map((item, index) => {
+			const cell = template?.cells[index];
+			return (
+				<div
+					style={
+						cell
+							? {
+									gridColumn: `span ${cell.colSpan} / span ${cell.colSpan}`,
+									gridRow: `span ${cell.rowSpan} / span ${cell.rowSpan}`
+								}
+							: undefined
+					}
+				>
+					<ProjectGalleryCard item={item} />
+				</div>
+			);
+		})
+	}
+</div>

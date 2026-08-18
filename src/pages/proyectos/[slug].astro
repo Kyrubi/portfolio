@@ -4,6 +4,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import Layout from '../../layouts/Layout.astro';
 import Section from '../../components/ui/Section.astro';
 import Badge from '../../components/ui/Badge.astro';
+import ProjectGalleryMosaic from '../../components/gallery/ProjectGalleryMosaic.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import { getProjectGradient } from '../../lib/projectAccent';
 
@@ -16,7 +17,7 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { title, year, tags, summary, externalLink } = project.data;
+const { title, year, tags, summary, externalLink, gallery, metrics } = project.data;
 const { Content } = await render(project);
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -36,14 +37,39 @@ const t = useTranslations(lang);
 		</div>
 		<h1 data-scroll-reveal class="mt-4 text-4xl font-extrabold tracking-tightest sm:text-5xl">{title}</h1>
 		<p data-scroll-reveal class="mt-4 max-w-2xl text-lg text-ink-muted">{summary}</p>
-		<div
-			data-scroll-reveal
-			class:list={['mt-10 mb-10 aspect-video w-full rounded-2xl', getProjectGradient(project.id)]}
-		>
-		</div>
+
+		{
+			gallery && gallery.length > 0 ? (
+				<div data-scroll-reveal class="mt-10 mb-10">
+					<ProjectGalleryMosaic
+						items={gallery.map((item, index) => ({ id: `${project.id}-${index}`, ...item }))}
+					/>
+				</div>
+			) : (
+				<div
+					data-scroll-reveal
+					class:list={['mt-10 mb-10 aspect-video w-full rounded-2xl', getProjectGradient(project.id)]}
+				/>
+			)
+		}
+
 		<article data-scroll-reveal class="max-w-2xl text-ink-muted [&>p]:mt-4 [&>p]:leading-relaxed">
 			<Content />
 		</article>
+
+		{
+			metrics && metrics.length > 0 && (
+				<div data-scroll-reveal class="mt-10 grid gap-4 sm:grid-cols-3">
+					{metrics.map((metric) => (
+						<div class="rounded-2xl border border-ink-muted/15 bg-surface p-6">
+							<p class="text-3xl font-extrabold tracking-tightest text-ink">{metric.value}</p>
+							<p class="mt-1 font-mono text-xs uppercase tracking-widest text-ink-muted">{metric.label}</p>
+						</div>
+					))}
+				</div>
+			)
+		}
+
 		{
 			externalLink && (
 				<a
