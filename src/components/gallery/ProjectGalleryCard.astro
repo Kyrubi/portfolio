@@ -1,0 +1,61 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { GalleryMediaItem } from './types';
+
+interface Props extends HTMLAttributes<'div'> {
+	item: GalleryMediaItem;
+}
+
+const { item, class: className = '', ...rest } = Astro.props;
+---
+
+<div
+	class:list={[
+		'group/card relative h-full w-full overflow-hidden rounded-3xl border border-ink-muted/15 transition-colors hover:border-ink-muted/35',
+		className
+	]}
+	{...rest}
+>
+	{
+		item.src ? (
+			<img
+				src={item.src}
+				alt={item.title}
+				loading="lazy"
+				class="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/card:scale-105"
+			/>
+		) : (
+			<div
+				class:list={[
+					'relative h-full w-full bg-gradient-to-br transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/card:scale-105',
+					item.gradientFallback ?? 'from-violet/40 via-pink/20 to-transparent'
+				]}
+			>
+				<div class="noise-layer absolute inset-0 opacity-[0.08]" />
+			</div>
+		)
+	}
+
+	{
+		item.badge && (
+			<span class="absolute left-3 top-3 rounded-full border border-ink-muted/30 bg-void/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest text-ink backdrop-blur-sm">
+				{item.badge}
+			</span>
+		)
+	}
+
+	{
+		item.caption && (
+			<div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-void/90 to-transparent p-4 pt-10">
+				<p class="font-mono text-xs uppercase tracking-widest text-ink-muted">{item.caption}</p>
+			</div>
+		)
+	}
+</div>
+
+<style>
+	.noise-layer {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+		mix-blend-mode: overlay;
+	}
+</style>
