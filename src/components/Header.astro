@@ -46,11 +46,16 @@ function linkClass(href: string) {
 			{t('nav.menu')}
 		</button>
 	</div>
-	<nav id="mobile-nav" class="mt-4 hidden flex-col gap-4 md:hidden" aria-label={t('nav.home')}>
-		{links.map((link) => <a href={link.href} class:list={linkClass(link.href)}>{link.label}</a>)}
-		<a href={togglePath} class="font-mono text-xs uppercase tracking-widest text-ink-muted hover:text-ink">
-			{languages[otherLang]}
-		</a>
+	<nav id="mobile-nav" class="nav-collapse grid md:hidden" aria-label={t('nav.home')}>
+		<div class="flex flex-col gap-4 overflow-hidden pt-4">
+			{links.map((link) => <a href={link.href} class:list={linkClass(link.href)}>{link.label}</a>)}
+			<a
+				href={togglePath}
+				class="font-mono text-xs uppercase tracking-widest text-ink-muted transition-colors hover:text-ink"
+			>
+				{languages[otherLang]}
+			</a>
+		</div>
 	</nav>
 </header>
 
@@ -64,7 +69,28 @@ function linkClass(href: string) {
 		toggle.textContent = expanded
 			? (toggle.dataset.labelOpen ?? 'Menú')
 			: (toggle.dataset.labelClose ?? 'Cerrar');
-		mobileNav?.classList.toggle('hidden');
-		mobileNav?.classList.toggle('flex');
+		mobileNav?.classList.toggle('is-open');
 	});
 </script>
+
+<style>
+	.nav-collapse {
+		grid-template-rows: 0fr;
+		opacity: 0;
+		overflow: hidden;
+		transition:
+			grid-template-rows 200ms cubic-bezier(0.16, 1, 0.3, 1),
+			opacity 200ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.nav-collapse.is-open {
+		grid-template-rows: 1fr;
+		opacity: 1;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.nav-collapse {
+			transition: opacity 150ms ease;
+		}
+	}
+</style>
