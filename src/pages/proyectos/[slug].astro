@@ -27,7 +27,7 @@ const t = useTranslations(lang);
 	<Section>
 		<a
 			href={getRelativeLocaleUrl(lang, '/proyectos')}
-			class="font-mono text-xs uppercase tracking-widest text-ink-muted hover:text-ink"
+			class="font-mono text-xs uppercase tracking-widest text-ink-muted transition-colors hover:text-ink"
 		>
 			{t('projectDetail.back')}
 		</a>
@@ -59,9 +59,13 @@ const t = useTranslations(lang);
 
 		{
 			metrics && metrics.length > 0 && (
-				<div data-scroll-reveal class="mt-10 grid gap-4 sm:grid-cols-3">
-					{metrics.map((metric) => (
-						<div class="rounded-2xl border border-ink-muted/15 bg-surface p-6">
+				<div class="mt-10 grid gap-4 sm:grid-cols-3">
+					{metrics.map((metric, index) => (
+						<div
+							data-scroll-reveal
+							data-reveal-delay={index * 0.06}
+							class="rounded-2xl border border-ink-muted/15 bg-surface p-6"
+						>
 							<p class="text-3xl font-extrabold tracking-tightest text-ink">{metric.value}</p>
 							<p class="mt-1 font-mono text-xs uppercase tracking-widest text-ink-muted">{metric.label}</p>
 						</div>
@@ -76,7 +80,7 @@ const t = useTranslations(lang);
 					href={externalLink}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="mt-10 inline-block font-mono text-xs uppercase tracking-widest text-ink hover:text-cyan"
+					class="mt-10 inline-block font-mono text-xs uppercase tracking-widest text-ink transition-colors hover:text-cyan"
 				>
 					{t('projectDetail.visit')}
 				</a>

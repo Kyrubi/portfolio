@@ -13,6 +13,9 @@ export function scrollReveal(root: ParentNode = document) {
 	}
 
 	targets.forEach((target, index) => {
+		const explicitDelay = target.dataset.revealDelay;
+		const delay = explicitDelay !== undefined ? Number(explicitDelay) : (index % 3) * 0.06;
+
 		gsap.fromTo(
 			target,
 			{ opacity: 0, y: 32 },
@@ -21,7 +24,7 @@ export function scrollReveal(root: ParentNode = document) {
 				y: 0,
 				duration: 0.7,
 				ease: 'power3.out',
-				delay: (index % 3) * 0.06,
+				delay,
 				scrollTrigger: {
 					trigger: target,
 					start: 'top 85%',

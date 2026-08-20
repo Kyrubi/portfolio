@@ -46,6 +46,8 @@ export function initChromeScenePBR(canvas: HTMLCanvasElement) {
 	rimLight.position.set(-4, -1, -2);
 	scene.add(rimLight);
 
+	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 	const timer = new THREE.Timer();
 	let frameId: number;
 
@@ -54,6 +56,7 @@ export function initChromeScenePBR(canvas: HTMLCanvasElement) {
 		camera.aspect = clientWidth / clientHeight;
 		camera.updateProjectionMatrix();
 		renderer.setSize(clientWidth, clientHeight, false);
+		if (prefersReducedMotion) renderer.render(scene, camera);
 	}
 
 	const resizeObserver = new ResizeObserver(resize);
@@ -68,10 +71,15 @@ export function initChromeScenePBR(canvas: HTMLCanvasElement) {
 		renderer.render(scene, camera);
 		frameId = requestAnimationFrame(tick);
 	}
-	tick();
+
+	if (prefersReducedMotion) {
+		renderer.render(scene, camera);
+	} else {
+		tick();
+	}
 
 	return function dispose() {
-		cancelAnimationFrame(frameId);
+		if (!prefersReducedMotion) cancelAnimationFrame(frameId);
 		resizeObserver.disconnect();
 		geometry.dispose();
 		material.dispose();

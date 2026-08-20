@@ -22,7 +22,7 @@ const t = useTranslations(lang);
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class="flex min-h-dvh flex-col">
 		<a
 			href="#main-content"
 			class="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-50 focus-visible:rounded-full focus-visible:bg-ink focus-visible:px-4 focus-visible:py-2 focus-visible:font-mono focus-visible:text-xs focus-visible:uppercase focus-visible:tracking-widest focus-visible:text-void"
@@ -30,7 +30,7 @@ const t = useTranslations(lang);
 			{t('nav.skip')}
 		</a>
 		<Header />
-		<main id="main-content">
+		<main id="main-content" class="flex-1">
 			<slot />
 		</main>
 		<Footer />
